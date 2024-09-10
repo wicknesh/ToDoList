@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+:root {
+    --ultramarine-blue: #3846FF;
+}
+
+body {
+    font-family: Rubik;
+    background-color: #5A19BB;
+}
+
+#hello, #welcome {
+    padding: 0;
+    margin: 0;
+    color: var(--ultramarine-blue);
+    font-size: 5em;
+}
+
+#hello {
+    font-weight: 300;
+
+}
+
+#welcome {
+    font-weight: 700;
+}
+
+.login-container {
+    margin-top: 5em;
+    background-color: white;
+}
+
+.login-btn {
+    background-color: #FF29FF;
+    color: white;
+    font-weight: 500;
+    border-radius: 0;
+}
+
+.login-img-side {
+    background: url(img/login-side.jpg);
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
