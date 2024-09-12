@@ -5,6 +5,7 @@
 }
 
 body {
+    color: white;
     font-family: Rubik;
     background-color: #5A19BB;
 }
@@ -42,4 +43,37 @@ body {
     background-size: cover;
     margin: 0;
     padding: 0;
+}
+
+.login-btn:hover {
+    border-color: #FF29FF;
+    color:black;
+}
+
+#nav-logo {
+    margin-left: 1em;
+    padding: 0.5em;
+}
+
+.spinner-style {
+    color: #3846FF;
+    padding: 10em;
+    margin-top: 5em;
+}
+
+.fetch-container {
+    background-color: #212529;
+    min-height: 50em;
+}
+
+.list-container {
+    margin-top: 5em;
+}
+
+.todo-item {
+    padding: 0.5em 2em;
+    border: 1px solid white;
+    border-radius: 1em;
+    margin-top: 1em;
+    font-size: 1.5em;
 }
