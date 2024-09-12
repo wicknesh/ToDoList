@@ -1,24 +1,50 @@
-var loginBtn = document.querySelector('.login-btn');
-console.log(loginBtn);
+let logoutBtn = document.querySelector('.logout-btn');
+let spinnerStyle = document.querySelector('.spinner-style');
+let listContainer = document.querySelector('.list-container');
 
-function validation(username, password, callback) {
-    const validUsername = 'admin';
-    const validPassword = '12345';
+logoutBtn.addEventListener('click', () => {
+    window.location.href = "index.html";
+});
 
-    username == validUsername && password == validPassword ? callback(true) : callback (false);
-}
+window.addEventListener("load", () => {
+    fetchAPI()
+    .then((data) => {
+        data.forEach((element, index) => {
+            const todoItem = document.createElement('div');
+            todoItem.classList.add('d-flex', 'justify-content-between', 'align-items-center', 'todo-item');
 
-loginBtn.addEventListener('click', () => {
-    const username = document.querySelector('#InputEmailLogin').value;
-    const password = document.querySelector('#InputPasswordLogin').value;
+            const taskDesc = document.createElement('p');
+            taskDesc.classList.add('mb-0');
+            taskDesc.textContent = element.title;
 
-    validation(username, password, function(validationValue) {
-        if(validationValue) {
-            window.location.href = "main.html";
-        }
-        else {
-            console.log('Oops');
-        }
-    });   
+            const checkBox = document.createElement('input');
+            checkBox.type = 'checkbox';
+            checkBox.classList.add('btn-check');
+            checkBox.id = `btncheck${element.id}`;
+            checkBox.autocomplete = 'off';
+
+            const label = document.createElement('label');
+            label.classList.add('btn', 'btn-outline-primary');
+            label.setAttribute('for', `btncheck${element.id}`);
+            label.textContent = 'Done';
+
+            todoItem.appendChild(taskDesc);
+            todoItem.appendChild(checkBox);
+            todoItem.appendChild(label);
+
+            listContainer.appendChild(todoItem);
+        });
+    })
 })
 
+function fetchAPI() {
+    const url = 'https://jsonplaceholder.typicode.com/todos';
+
+    return fetch(url)
+    .then((reponse) => {
+        if(!reponse.ok){
+            throw new Error('Error fetching details, please reload!');
+        }
+        return reponse.json();
+    })
+}
