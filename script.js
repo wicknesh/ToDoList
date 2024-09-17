@@ -6,10 +6,12 @@ logoutBtn.addEventListener('click', () => {
     window.location.href = "index.html";
 });
 
+let checkCount = 0;
+
 window.addEventListener("load", () => {
     fetchAPI()
     .then((data) => {
-        data.forEach((element, index) => {
+        data.forEach((element) => {
             const todoItem = document.createElement('div');
             todoItem.classList.add('d-flex', 'justify-content-between', 'align-items-center', 'todo-item');
 
@@ -33,7 +35,26 @@ window.addEventListener("load", () => {
             todoItem.appendChild(label);
 
             listContainer.appendChild(todoItem);
-        });
+
+            // let btnCheck = document.querySelectorAll('.btn-check');
+            // console.log(btnCheck);
+
+            let promise = new Promise((resolve) => {
+                checkBox.addEventListener('change', () => {
+                    if(checkBox.checked){
+                        checkCount++;
+                    }
+                    else{
+                        checkCount--;
+                    }
+                    if(checkCount == 5){
+                        resolve('Congrats! 5 Tasks have been successfully completed!')
+                    }
+                })
+            })
+            promise
+            .then(message => {alert(`${message}`)});
+        })
     })
 })
 
@@ -48,3 +69,7 @@ function fetchAPI() {
         return reponse.json();
     })
 }
+
+
+let btnCheck = document.querySelectorAll('.btn-check');
+console.log(btnCheck);
